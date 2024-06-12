@@ -21,9 +21,9 @@ MarkupSafe==2.1.5
 matplotlib==3.9.0
 mdurl==0.1.2
 numpy==1.26.4
-opencv-python==4.10.0.82
 packaging==24.1
 pandas==2.2.2
+opencv-python-headless
 pillow==10.3.0
 protobuf==4.25.3
 pyarrow==16.1.0
