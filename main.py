@@ -2,6 +2,7 @@ import cv2
 import pytesseract
 import numpy as np
 import matplotlib.pyplot as plt
+import streamlit as st
 
 
 # get grayscale image
@@ -61,17 +62,15 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 # Adding custom options
 custom_config = r"--oem 3 --psm 6"
 
-text = pytesseract.image_to_string(img, config=custom_config)
-print(text)
+# text = pytesseract.image_to_string(img, config=custom_config)
+# print(text)
 
-import streamlit as st
-from PIL import Image
 
 # Title of the app
 st.title("Image Display Example")
 
 # Display an image
-#image = Image.open(img_path)  # Replace with your image file path
+# image = Image.open(img_path)  # Replace with your image file path
 st.image(img, caption="This is a sample image", use_column_width=True)
 
 """
