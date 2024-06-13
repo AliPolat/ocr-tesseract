@@ -3,7 +3,8 @@ import pytesseract
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-
+from PIL import Image
+import io
 
 # get grayscale image
 def grayscale(image):
@@ -55,42 +56,48 @@ def deskew(image):
 def match_template(image, template):
     return cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED) 
 
+    # Display the original and processed images
+    # plt.figure(figsize=(10, 5))
 
-img_path = "images/image3.png"
-img = cv2.imread(img_path)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    # plt.subplot(1, 3, 1)
+    # plt.title('Original Image')
+    # plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    # plt.axis('off')
+
+    # plt.subplot(1, 3, 2)
+    # plt.title('Grayscale Image')
+    # plt.imshow(grayscale(img), cmap='gray')
+    # plt.axis('off')
+
+    # plt.subplot(1, 3, 3)
+    # plt.title('Sharpened Image')
+    # plt.imshow(thresholding(grayscale(img)), cmap='gray')
+    # plt.axis('off')
+
+    # plt.show()
+
+uploaded_file = st.sidebar.file_uploader("Choose an image file")
+
+if uploaded_file:
+    img = Image.open(io.BytesIO(uploaded_file.getvalue()))
+else:
+    img_path = "images/image1.jpeg"
+    img = cv2.imread(img_path)
+
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 # Adding custom options
-custom_config = r"--oem 3 --psm 6"
+custom_config = r"--oem 3 --psm 6 l"
 
-# text = pytesseract.image_to_string(img, config=custom_config)
+text = pytesseract.image_to_string(img, lang='eng+tur', config=custom_config)
 # print(text)
 
-
 # Title of the app
-st.title("Image Display Example")
+st.title("Text Recognation")
+st.subheader("Sample Image")
 
 # Display an image
 # image = Image.open(img_path)  # Replace with your image file path
-st.image(img, caption="This is a sample image", use_column_width=True)
+st.image(img, caption="Sample image", use_column_width="auto")
 
-"""
-# Display the original and processed images
-plt.figure(figsize=(10, 5))
-
-plt.subplot(1, 3, 1)
-plt.title('Original Image')
-plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.axis('off')
-
-plt.subplot(1, 3, 2)
-plt.title('Grayscale Image')
-plt.imshow(grayscale(img), cmap='gray')
-plt.axis('off')
-
-plt.subplot(1, 3, 3)
-plt.title('Sharpened Image')
-plt.imshow(thresholding(grayscale(img)), cmap='gray')
-plt.axis('off')
-
-plt.show()
-"""
+st.subheader("Recognized text")
+st.text(text)
