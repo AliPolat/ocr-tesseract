@@ -56,27 +56,27 @@ def deskew(image):
 def match_template(image, template):
     return cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED) 
 
-    # Display the original and processed images
-    # plt.figure(figsize=(10, 5))
+# Display the original and processed images
+# plt.figure(figsize=(10, 5))
 
-    # plt.subplot(1, 3, 1)
-    # plt.title('Original Image')
-    # plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    # plt.axis('off')
+# plt.subplot(1, 3, 1)
+# plt.title('Original Image')
+# plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+# plt.axis('off')
 
-    # plt.subplot(1, 3, 2)
-    # plt.title('Grayscale Image')
-    # plt.imshow(grayscale(img), cmap='gray')
-    # plt.axis('off')
+# plt.subplot(1, 3, 2)
+# plt.title('Grayscale Image')
+# plt.imshow(grayscale(img), cmap='gray')
+# plt.axis('off')
 
-    # plt.subplot(1, 3, 3)
-    # plt.title('Sharpened Image')
-    # plt.imshow(thresholding(grayscale(img)), cmap='gray')
-    # plt.axis('off')
+# plt.subplot(1, 3, 3)
+# plt.title('Sharpened Image')
+# plt.imshow(thresholding(grayscale(img)), cmap='gray')
+# plt.axis('off')
 
-    # plt.show()
+# plt.show()
 
-uploaded_file = st.sidebar.file_uploader("Choose an image file")
+uploaded_file = st.sidebar.file_uploader("Bir resim dosyası seçin")
 
 if uploaded_file:
     img = Image.open(io.BytesIO(uploaded_file.getvalue()))
@@ -92,12 +92,12 @@ text = pytesseract.image_to_string(img, lang='eng+tur', config=custom_config)
 # print(text)
 
 # Title of the app
-st.title("Text Recognation")
-st.subheader("Sample Image")
+st.title("Tera Text Recognation")
+st.subheader("Örnek Resim")
 
 # Display an image
 # image = Image.open(img_path)  # Replace with your image file path
 st.image(img, caption="Sample image", use_column_width="auto")
 
-st.subheader("Recognized text")
+st.subheader("Tanımlanan metin")
 st.text(text)
