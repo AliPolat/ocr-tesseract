@@ -76,7 +76,9 @@ def match_template(image, template):
 
 # plt.show()
 
-uploaded_file = st.sidebar.file_uploader("Bir resim dosyası seçin")
+uploaded_file = st.sidebar.file_uploader(
+    "Bir resim dosyası seçin", type=["png", "jpg", "jpeg"]
+)
 
 if uploaded_file:
     img = Image.open(io.BytesIO(uploaded_file.getvalue()))
