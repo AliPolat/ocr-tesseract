@@ -92,7 +92,7 @@ text = pytesseract.image_to_string(img, lang='eng+tur', config=custom_config)
 # print(text)
 
 # Title of the app
-st.title("Tera Hz Text Recognation")
+st.title("Tera Text Recognation")
 st.subheader("Örnek Resim")
 
 # Display an image
