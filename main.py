@@ -76,6 +76,19 @@ def match_template(image, template):
 
 # plt.show()
 
+st.markdown(
+    """
+    <style>
+    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 uploaded_file = st.sidebar.file_uploader(
     "Bir resim dosyası seçin", type=["png", "jpg", "jpeg"]
 )
